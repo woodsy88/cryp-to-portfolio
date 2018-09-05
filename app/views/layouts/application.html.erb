@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    
+    <%= render 'shared/nav' %>
     <%= yield %>
 
     <%= js add_gritter(flash[:notice], title: "DailySmarty Notification", sticky: false) %>
