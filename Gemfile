@@ -60,3 +60,5 @@ gem 'bootstrap', '~> 4.1', '>= 4.1.3'
 gem 'jquery-rails'
 
 gem 'gritter', '~> 1.2'
+
+gem 'pundit', '~> 2.0'
