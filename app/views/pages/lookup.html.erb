@@ -1,6 +1,4 @@
-<h4>Lookup a Crypto</h4>
-
-
+<h4>Enter the Crypto you are looking for</h4>
 
 <%= form_tag pages_lookup_path, :method => 'POST' do %>
   <%= text_field_tag 'symbol', nil, placeholder: 'Enter Crypto Symbol', size: 50 %>
@@ -8,4 +6,11 @@
 <% end %>
 
 
-<%= @symbol %>
+<% if @symbol %>
+  <h2>Search Results</h2>
+  <% for x in @lookup_coin %>
+    <% if @symbol == x["symbol"] %>
+        <%= x["name"] %>: <%= x["price_usd"] %>
+    <% end %>
+  <% end %>
+<% end %>
