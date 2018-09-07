@@ -1,4 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<i class="fa fa-address-card" aria-hidden="true"></i>
-
+<div class="container">
+  <% for x in @coins %>
+    <% for coin in @my_coins %>
+        <% if coin == x["symbol"] %>
+          <div class="card">
+            <%= x["name"] %>
+            <%= x["symbol"] %>
+            $<%= x["price_usd"] %>
+          </div>
+        <% end %>
+    <% end %>
+  <% end %>
+</div>
