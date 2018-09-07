@@ -1,6 +1,11 @@
 <h4>Lookup a Crypto</h4>
 
-<%= form_tag home_lookup_path, :method => 'POST' do %>
-  <%= text_field_tag 'id', nil, placeholder: 'Enter Crypto Symbol', size: 50 %>
+
+
+<%= form_tag pages_lookup_path, :method => 'POST' do %>
+  <%= text_field_tag 'symbol', nil, placeholder: 'Enter Crypto Symbol', size: 50 %>
   <%= submit_tag 'Lookup Stock Quote' %>
 <% end %>
+
+
+<%= @symbol %>

@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+
   def home
     require 'net/http'
     require 'json'
@@ -16,8 +17,8 @@ class PagesController < ApplicationController
   end
 
   def lookup
-
+    @symbol = params[:symbol]
   end
-  
+
 end
 

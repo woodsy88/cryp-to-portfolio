@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   end
 
   get 'pages/lookup' => 'pages#lookup'
+
+  post "/pages/lookup" => 'pages#lookup'
   
   root to: 'pages#home'
 end
