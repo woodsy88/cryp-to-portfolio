@@ -39,6 +39,9 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'meta_request'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :development do
@@ -48,6 +51,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -62,3 +67,7 @@ gem 'jquery-rails'
 gem 'gritter', '~> 1.2'
 
 gem 'pundit', '~> 2.0'
+
+gem "awesome_print", require:"ap"
+
+gem "pry-rails", group:"development"
