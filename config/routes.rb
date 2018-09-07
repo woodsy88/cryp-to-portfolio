@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
     get 'signup', to: 'devise/registrations#new'
   end
+
+  get 'pages/lookup' => 'pages#lookup'
   
   root to: 'pages#home'
 end
