@@ -16,6 +16,8 @@
 
  @import "bootstrap";
  @import "gritter";
+ @import "pages.scss";
+ @import "_colors.scss";
 
 .ml-auto .dropdown-menu {
   left: auto !important;

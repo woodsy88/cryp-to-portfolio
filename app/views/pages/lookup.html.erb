@@ -1,8 +1,8 @@
 <h4>Enter the Crypto you are looking for</h4>
 
-<%= form_tag pages_lookup_path, :method => 'POST' do %>
-  <%= text_field_tag 'symbol', nil, placeholder: 'Enter Crypto Symbol', size: 50 %>
-  <%= submit_tag 'Lookup Stock Quote' %>
+<%= form_tag pages_lookup_path, :method => 'POST', class: "form-inline my-2 my-lg-0" do %>
+  <%= text_field_tag 'symbol', nil, placeholder: 'Enter Crypto Symbol', size: 50, class: "form-control mr-sm-2" %>
+  <%= submit_tag 'Lookup Stock Quote', class: "btn btn-primary" %>
 <% end %>
 
 

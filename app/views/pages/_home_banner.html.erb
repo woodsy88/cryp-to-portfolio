@@ -1,0 +1,14 @@
+
+  <div class="jumbotron">
+    <h1 class="thin">Crypto-grapher</h1>
+    <p class="display-4">The latest <strong>crypto prices</strong> and <strong>news</strong></p>
+    <hr class="my-4">
+    <p class="lead">Search Crypto by Symbol
+    </p>
+    <div class="banner-form">
+    <%= form_tag pages_lookup_path, :method => 'POST', class: "form-inline my-2 my-lg-0" do %>
+      <%= text_field_tag 'symbol', nil, placeholder: 'Enter Crypto Symbol', size: 50, class: "form-control mr-sm-2" %>
+      <%= submit_tag 'Lookup Stock Quote', class: "btn btn-primary" %>
+    <% end %>
+    </div>
+  </div>
