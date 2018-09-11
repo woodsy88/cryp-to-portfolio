@@ -1,0 +1,32 @@
+<%= form_for (@crypto) do |form| %>
+
+ <% if @crypto.errors.any? %>
+    <% @crypto.errors.full_messages.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+
+ <div class="row">
+    <div class="col-md-6">
+     <div class="form-group">
+       <%= form.label :symbol %>
+       <%= form.text_field :symbol, class: "form-control" %>
+     </div>
+     
+     <div class="form-group">
+       <%= form.label :amount_owned %>
+       <%= form.text_field :amount_owned, class: "form-control" %>
+     </div>
+     <div class="form-group">
+       <%= form.label :cost_per %>
+       <%= form.text_field :cost_per, class: "form-control" %>
+     </div>     
+   </div>
+   
+ </div>  
+  <div class="actions">
+       <%= form.submit "Submit",  class: "btn btn-primary btn-block mt-5" %>
+</div>
+
+
+<% end %>

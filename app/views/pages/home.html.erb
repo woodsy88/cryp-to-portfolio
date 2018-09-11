@@ -1,4 +1,5 @@
 <div class="container">
+<h2>My Coins</h2>
   <% for x in @coins %>
     <% for coin in @my_coins %>
         <% if coin == x["symbol"] %>
@@ -9,5 +10,19 @@
           </div>
         <% end %>
     <% end %>
+  <% end %>
+</div>
+
+
+<div class="container">
+<h2>Top Coins</h2>
+  <% for x in @coins %>
+   
+          <div class="card">
+            <%= x["name"] %>
+            <%= x["symbol"] %>
+            $<%= x["price_usd"] %>
+          </div>
+
   <% end %>
 </div>
