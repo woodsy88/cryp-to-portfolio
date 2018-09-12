@@ -10,6 +10,10 @@ class CryptosController < ApplicationController
     @crypto= Crypto.new
   end
 
+  def show
+    
+  end
+
   def edit
     authorize @crypto
   end
@@ -27,8 +31,12 @@ class CryptosController < ApplicationController
 
   def update
         authorize @crypto
-        @rental.update(rental_params)
-        redirect_to @rental, notice: 'Your rental was created successfully'    
+
+       if @crypto.update(crypto_params)
+        redirect_to @crypto, notice: 'Your crypto was created successfully'
+       else
+        render :edit, notice: 'there was a problem'    
+       end
   end
 
   private
