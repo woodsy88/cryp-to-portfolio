@@ -17,12 +17,10 @@
 <div class="container">
 <h2>Top Coins</h2>
   <% for x in @coins %>
-   
           <div class="card">
             <%= x["name"] %>
             <%= x["symbol"] %>
             $<%= x["price_usd"] %>
           </div>
-
   <% end %>
 </div>

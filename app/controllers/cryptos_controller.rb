@@ -1,9 +1,17 @@
 class CryptosController < ApplicationController
   before_action :set_crypto, only: [:edit, :show, :update, :destroy] 
-  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
+  before_action :authenticate_user! #, only: [:new, :create, :edit, :destroy]
 
   def index
-    @crypto = Crypto.all
+    @cryptos = Crypto.all
+
+    require 'net/http'
+    require 'json'
+    @url = 'https://api.coinmarketcap.com/v1/ticker/'
+    @uri = URI (@url)
+    @response = Net::HTTP.get(@uri)
+    @lookup_crypto = JSON.parse(@response)
+
   end
 
   def new
@@ -30,14 +38,20 @@ class CryptosController < ApplicationController
   end
 
   def update
-        authorize @crypto
+    authorize @crypto
 
-       if @crypto.update(crypto_params)
-        redirect_to @crypto, notice: 'Your crypto was created successfully'
-       else
-        render :edit, notice: 'there was a problem'    
-       end
+    if @crypto.update(crypto_params)
+    redirect_to @crypto, notice: 'Your crypto was created successfully'
+    else
+    render :edit, notice: 'there was a problem'    
+    end
   end
+
+  def destroy
+    @crypto.destroy
+    redirect_to cryptos_path, notice: 'deleted crypto from portfolio'
+  end
+
 
   private
 

@@ -3,3 +3,6 @@
   <%= @crypto.cost_per %>
   <%= @crypto.amount_owned  %>
 </div>
+<%= link_to 'Edit', edit_crypto_path(@crypto) %>
+<%= link_to 'All Cryptos', cryptos_path, class: 'btn btn-primary' %>
+<%= link_to 'Delete', crypto_path(@crypto), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
