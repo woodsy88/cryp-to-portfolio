@@ -1,8 +1,56 @@
-<div class="card">
-  <%= @crypto.symbol %>
-  <%= @crypto.cost_per %>
-  <%= @crypto.amount_owned  %>
+<div class="container">
+<div class="row">
+    <div class="card">
+      
+      <%= @crypto.symbol %>
+      <div class="card-body">
+
+          <%= @crypto.symbol.upcase %>
+          <%= @crypto.cost_per %>
+          <%= @crypto.amount_owned  %>
+        <% for x in @show_crypto %>
+          <% if @crypto.symbol.upcase == x["symbol"] %>
+              
+              <% crypto_name = x["name"] %>
+              <% crypto_price = x["price_usd"] %>
+              <% crypto_rank = x["rank"] %>
+              <% crypto_symbol = x["symbol"] %>
+              <% crypto_1h = x["percent_change_1h"] %>
+              <% crypto_24h = x["percent_change_24h"] %>
+              <% crypto_7d = x["percent_change_7d"] %>
+            
+            <table class="table table-dark table-striped">
+              <thead>
+                <th>Name</th>
+                <th>Symbol</th>
+                <th>Price</th>
+                <th>Rank</th>
+                <th>1hr Change</th>             
+                <th>24 HR Change</th>
+                <th>7 day Change</th>
+              </thead>
+                <tbody>
+                        <tr>
+                          <td><%= crypto_name %></td>
+                          <td><%= crypto_symbol %></td>
+                          <td><%= number_to_currency(crypto_price) %></td>
+                          <td><%= crypto_rank %></td>
+                          <td><%= crypto_1h %>%</td>
+                          <td><%= crypto_24h %>%</td>
+                          <td><%= crypto_7d  %>%</td>
+                        </tr>
+                </tbody>
+            </table>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="card-footer">
+            <%= link_to 'Edit', edit_crypto_path(@crypto) %>
+            <%= link_to 'Delete', crypto_path(@crypto), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+      </div>
+    </div>
+    
+   
 </div>
-<%= link_to 'Edit', edit_crypto_path(@crypto) %>
 <%= link_to 'All Cryptos', cryptos_path, class: 'btn btn-primary' %>
-<%= link_to 'Delete', crypto_path(@crypto), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-primary' %>
+</div>

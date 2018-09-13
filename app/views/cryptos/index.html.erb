@@ -1,3 +1,5 @@
+<% profit_loss = 0 %>
+
 <table class="table table-dark table-striped">
   <thead>
     <tr>
@@ -6,7 +8,7 @@
       <th scope="col">Current Price</th>
       <th scope="col">Rank</th>
       <th scope="col">Market Cap</th>
-      <th scope="col">1 HR Chnage</th>
+      <th scope="col">1 HR Change</th>
       <th scope="col">24 HR Change</th>
       <th scope="col">7 Day Change</th>
       <th scope="col">Market Value of Amount Owned</th>
@@ -17,47 +19,51 @@
       <th scope="col">Units Purchased</th>
     </tr>
   </thead>
-
-
   <tbody>
-
-  <% if @cryptos %>
-    <% @cryptos.each do |crypto| %>
-       <% if crypto.user_id == current_user.id %>
-          <% if crypto.symbol %>
-              <% crypto.symbol = crypto.symbol.upcase %>
-          <% end %>
-    
-      <tr>
-        <% for x in @lookup_crypto %>
-            <% if crypto.symbol == x["symbol"] %>
-                
-                <td><%= link_to x["name"], crypto %></td>
-                <td><%= x["symbol"] %></td>
-                <td><%= number_to_currency(x["price_usd"]) %></td>
-
-                <td><%= x["rank"] %></td>
-                <td><%= number_to_currency(x["market_cap_usd"])  %></td>
-
-                <td><%= x["percent_change_1h"] %>%</td>
-                <td><%= x["percent_change_24h"] %>%</td>
-                <td><%= x["percent_change_7d"] %>%</td>
-               
-
-                <td><%= number_to_currency(x["price_usd"].to_d * crypto.amount_owned)  %></td>
-                <td><%= number_to_currency(crypto.cost_per * crypto.amount_owned)  %></td>
-                <td><%= number_to_currency((x["price_usd"].to_d * crypto.amount_owned ) - (crypto.cost_per * crypto.amount_owned )) %></td>
+    <% if @cryptos %>
+      <% @cryptos.each do |crypto| %>
+        <% if crypto.user_id == current_user.id %>
+            <% if crypto.symbol %>
+                <% crypto.symbol = crypto.symbol.upcase %>
             <% end %>
-          <% end %>
-        <td><%= crypto.user_id %></td>
-        <td><%= crypto.cost_per %></td>
-        <td><%= crypto.amount_owned %></td>
-      </tr>
+      
+        <tr>
+          <% for x in @lookup_crypto %>
+              <% if crypto.symbol == x["symbol"] %>
+                  
+                  <td><%= link_to x["name"], crypto %></td>
+                  <td><%= x["symbol"] %></td>
+                  <td><%= number_to_currency(x["price_usd"]) %></td>
 
+                  <td><%= x["rank"] %></td>
+                  <td><%= number_to_currency(x["market_cap_usd"])  %></td>
+
+                  <td><%= x["percent_change_1h"] %>%</td>
+                  <td><%= x["percent_change_24h"] %>%</td>
+                  <td><%= x["percent_change_7d"] %>%</td>
+                
+
+                  <td><%= number_to_currency(x["price_usd"].to_d * crypto.amount_owned)  %></td>
+                  <td><%= number_to_currency(crypto.cost_per * crypto.amount_owned)  %></td>
+                  <td><%= number_to_currency((x["price_usd"].to_d * crypto.amount_owned ) - (crypto.cost_per * crypto.amount_owned )) %></td>
+
+                  <%# For total profit loss at bottom of table %>
+                  <% profit_loss += (x["price_usd"].to_d * crypto.amount_owned ) - (crypto.cost_per * crypto.amount_owned ) %>
+              <% end %>
+            <% end %>
+          <td><%= crypto.user_id %></td>
+          <td><%= crypto.cost_per %></td>
+          <td><%= crypto.amount_owned %></td>
+        </tr>
     </tbody>
        <% end %>
     <% end %>
   <% end %>
 </table>
+
+<div class="card">
+  <strong>Total Portfolio Profit / Loss</strong>
+  <%= number_to_currency(profit_loss) %>
+</div>
 
 <%= link_to 'New Crypto', new_crypto_path, class: 'btn btn-primary' %>
